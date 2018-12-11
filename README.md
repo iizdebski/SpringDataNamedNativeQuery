@@ -23,3 +23,8 @@ It is a tradeoff. @NamedQuery gives you portability because you stick to the sta
 @NamedNativeQuery gives you flexibility but you leave the standard and potentially lose portability. 
 In case you switch to another DBMS, it is likely you would need to rewrite some of your @NamedNativeQuery definitions.
 So we should only use @NamedNativeQuery if it is really necessary.
+
+@NamedNativeQueries(value = {
+        @NamedNativeQuery(name = "Person.getPeronInfoByLastName", query = "SELECT *FROM persons_table WHERE last_name=?1",resultClass=Person.class),
+        @NamedNativeQuery(name = "Person.findByFirstNameAndEmail", query = "SELECT *FROM persons_table WHERE first_name=?1 AND email=?2",resultClass=Person.class)
+})
