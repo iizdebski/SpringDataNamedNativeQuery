@@ -2,24 +2,23 @@ package com.izdebski.SpringDataNamedQuery.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Table(name="persons_table")
 @DynamicUpdate
-@NamedQueries(value = {
+/*@NamedQueries(value = {
         @NamedQuery(name = "Person.getPeronInfoByLastName", query = "SELECT p FROM Person p WHERE p.lastName=?1"),
         @NamedQuery(name = "Person.findByFirstNameAndEmail", query = "SELECT p FROM Person p WHERE p.firstName=?1 AND email=?2")
+})*/
+
+@NamedNativeQueries(value = {
+        @NamedNativeQuery(name = "Person.getPeronInfoByLastName", query = "SELECT *FROM persons_table WHERE last_name=?1",resultClass=Person.class),
+        @NamedNativeQuery(name = "Person.findByFirstNameAndEmail", query = "SELECT *FROM persons_table WHERE first_name=?1 AND email=?2",resultClass=Person.class)
 })
+
 public class Person {
 
     public Person() {

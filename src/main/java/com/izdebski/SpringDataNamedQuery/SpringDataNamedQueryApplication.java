@@ -22,7 +22,7 @@ public class SpringDataNamedQueryApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//getPersonsInfoByLastName();
+		getPersonsInfoByLastName();
 		getPersonsInfoByFirstNameAndEmail();
 	}
 
